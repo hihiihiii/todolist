@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import TodoCreate from "./Components/TodoCreate";
+import TodoDbClickGuide from "./Components/TodoDbClickGuide";
+import TodoHead from "./Components/TodoHead";
+import TodoList from "./Components/TodoList";
+import TodoTemplate from "./Components/TodoTemplate";
+import { TodoProvider } from "./TodoProvider";
 
-function App() {
+const GlobalStyle = createGlobalStyle`
+  body{
+    background-color: #c8d6e5;
+    box-sizing: border-box;
+  }
+`;
+
+const TodoDbClickBlock = styled.div`
+  text-align: center;
+  font-size: 20px;
+  opacity: 0.4;
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TodoProvider>
+        <GlobalStyle></GlobalStyle>
+        <TodoTemplate>
+          <TodoHead></TodoHead>
+          <TodoList></TodoList>
+          <TodoCreate></TodoCreate>
+        </TodoTemplate>
+        <TodoDbClickBlock>더블 클릭시 수정 가능!</TodoDbClickBlock>
+      </TodoProvider>
+    </>
   );
-}
+};
 
 export default App;
